@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>예약 페이지 (FullCalendar)</title>
+  <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    #calendar { max-width: 600px; margin: 0 auto; }
+    #reservationForm { display: none; margin-top: 30px; max-width: 400px; }
+    label { display: block; margin-top: 10px; }
+    input, select { width: 100%; padding: 5px; }
+    button { margin-top: 15px; padding: 10px; }
+  </style>
+</head>
+<body>
+
+  <h1>예약 캘린더</h1>
+  <div id="calendar"></div>
+
+  <div id="reservationForm">
+    <h2>예약 정보 입력</h2>
+    <p>선택한 날짜: <span id="selectedDate"></span></p>
+    <form id="form">
+      <label>성별:
+        <select name="gender" required>
+          <option value="">선택</option>
+          <option value="male">남성</option>
+          <option value="female">여성</option>
+        </select>
+      </label>
+      <label>출생연도:
+        <input type="number" name="birthYear" placeholder="예: 1990" required>
+      </label>
+      <label>성함:
+        <input type="text" name="name" required>
+      </label>
+      <label>전화번호:
+        <input type="tel" name="phone" placeholder="010-1234-5678" required>
+      </label>
+      <label>계좌번호:
+        <input type="text" name="account" required>
+      </label>
+      <label>은행명:
+        <input type="text" name="bank" required>
+      </label>
+      <button type="submit">예약하기</button>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const calendarEl = document.getElementById('calendar');
+      const reservationForm = document.getElementById('reservationForm');
+      const selectedDateSpan = document.getElementById('selectedDate');
+
+      const calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        selectable: true,
+        dateClick: function(info) {
+          selectedDateSpan.textContent = info.dateStr;
+          reservationForm.style.display = 'block';
+        }
+      });
+
+      calendar.render();
+
+      const form = document.getElementById('form');
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+
+        // 예: 입력값 가져오기
+        const formData = new FormData(form);
+        const data = Object.fromEntries(formData.entries());
+        data.date = selectedDateSpan.textContent;
+
+        console.log('예약 데이터:', data);
+
+        // 여기서 서버로 전송하거나 로컬에 저장
+        alert('예약이 완료되었습니다!');
+
+        form.reset();
+        reservationForm.style.display = 'none';
+      });
+    });
+  </script>
+
+</body>
+</html>
