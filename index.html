@@ -2,7 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8" />
-  <title>예약 페이지 (FullCalendar)</title>
+  <title>블라인드mbti 예약 페이지 (FullCalendar)</title>
   <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
   <style>
     body { font-family: Arial, sans-serif; margin: 20px; }
@@ -15,36 +15,36 @@
 </head>
 <body>
 
-  <h1>예약 캘린더</h1>
+  <h1>블라인드mbti 예약 페이지</h1>
   <div id="calendar"></div>
 
   <div id="reservationForm">
     <h2>예약 정보 입력</h2>
     <p>선택한 날짜: <span id="selectedDate"></span></p>
     <form id="form">
-      <label>성별:
+      <label>성별을 선택해주세요.
         <select name="gender" required>
           <option value="">선택</option>
           <option value="male">남성</option>
           <option value="female">여성</option>
         </select>
       </label>
-      <label>출생연도:
+      <label>태어난 연도를 적어주세요.
         <input type="number" name="birthYear" placeholder="예: 1990" required>
       </label>
-      <label>성함:
+      <label>성함을 적어주세요.
         <input type="text" name="name" required>
       </label>
-      <label>전화번호:
+      <label>전화번호를 알려주세요.
         <input type="tel" name="phone" placeholder="010-1234-5678" required>
       </label>
-      <label>계좌번호:
+      <label>계좌정보를 적어주세요.
         <input type="text" name="account" required>
       </label>
-      <label>은행명:
+      <label>은행을 선택해주세요.
         <input type="text" name="bank" required>
       </label>
-      <button type="submit">예약하기</button>
+      <button type="submit">신청하기</button>
     </form>
   </div>
 
